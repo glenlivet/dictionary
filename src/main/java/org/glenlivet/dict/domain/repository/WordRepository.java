@@ -1,39 +1,35 @@
 package org.glenlivet.dict.domain.repository;
 
-import com.google.common.collect.Lists;
-import io.katharsis.queryParams.QueryParams;
-import io.katharsis.repository.annotations.JsonApiFindAll;
+import io.katharsis.queryspec.QuerySpec;
+import io.katharsis.repository.annotations.JsonApiFindOne;
 import io.katharsis.repository.annotations.JsonApiResourceRepository;
 import org.glenlivet.dict.domain.model.Definition;
 import org.glenlivet.dict.domain.model.Word;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.Arrays;
 
 /**
- * Created by glenlivet on 10/5/16.
+ * Created by glenlivet on 2/26/17.
  */
-@JsonApiResourceRepository(Word.class)
 @Component
+@JsonApiResourceRepository(Word.class)
 public class WordRepository {
 
-    @JsonApiFindAll
-    public Iterable<Word> findAll(QueryParams requestParams) {
-        Definition def = new Definition();
-        def.setId(1L);
-        def.setDescription("some def");
-        def.setPartOfSpeech("some part");
-        def.setSynonyms(Lists.newArrayList("synonymous"));
-        def.setExamples(Lists.newArrayList("some example."));
-
+    @JsonApiFindOne
+    public Word findOne(String id, QuerySpec querySpec) {
         Word word = new Word();
-        word.setId(2L);
-        word.setFrequency(new BigDecimal(4.12).setScale(2, RoundingMode.HALF_UP));
-        word.setPronunciation("abc");
-        word.setSpell("example");
-        word.setDefinitions(Lists.newArrayList(def));
+        word.setPronunciation("ɪɡ'zæmpəl");
+        word.setFrequency(new BigDecimal(3.5));
+        word.setId(id);
 
-        return Lists.newArrayList(word);
+        Definition def = new Definition();
+        def.setId(1l);
+        def.setDescription("abc desc.");
+        def.setExamples(Arrays.asList("exp 1.", "exp 2.", "exp 3."));
+        def.setPartOfSpeech("aaa");
+        word.setDefinitions(Arrays.asList(def));
+        return word;
     }
 }

@@ -1,27 +1,28 @@
 package org.glenlivet.dict.domain.repository;
 
-import com.google.common.collect.Lists;
-import io.katharsis.queryParams.QueryParams;
-import io.katharsis.repository.annotations.JsonApiFindAll;
+import io.katharsis.queryspec.QuerySpec;
+import io.katharsis.repository.annotations.JsonApiFindAllWithIds;
 import io.katharsis.repository.annotations.JsonApiResourceRepository;
 import org.glenlivet.dict.domain.model.Definition;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 /**
- * Created by glenlivet on 10/5/16.
+ * Created by glenlivet on 2/26/17.
  */
-@JsonApiResourceRepository(Definition.class)
 @Component
+@JsonApiResourceRepository(Definition.class)
 public class DefinitionRepository {
 
-    @JsonApiFindAll
-    public Iterable<Definition> findAll(QueryParams requestParams) {
+    @JsonApiFindAllWithIds
+    public Iterable<Definition> findAll(Iterable<Long> defIds, QuerySpec querySpec) {
         Definition def = new Definition();
-        def.setId(1L);
-        def.setDescription("some def");
-        def.setPartOfSpeech("some part");
-        def.setSynonyms(Lists.newArrayList("synonymous"));
-        def.setExamples(Lists.newArrayList("some example."));
-        return Lists.newArrayList(def);
+        def.setId(1l);
+        def.setDescription("abc desc.");
+        def.setExamples(Arrays.asList("exp 1.", "exp 2.", "exp 3."));
+        def.setPartOfSpeech("aaa");
+        return Arrays.asList(def);
     }
+
 }

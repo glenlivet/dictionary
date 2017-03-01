@@ -1,40 +1,28 @@
 package org.glenlivet.dict.domain.repository;
 
-import com.google.common.collect.Lists;
-import io.katharsis.queryParams.QueryParams;
+import io.katharsis.queryspec.QuerySpec;
 import io.katharsis.repository.annotations.JsonApiFindManyTargets;
-import io.katharsis.repository.annotations.JsonApiFindOneTarget;
 import io.katharsis.repository.annotations.JsonApiRelationshipRepository;
 import org.glenlivet.dict.domain.model.Definition;
 import org.glenlivet.dict.domain.model.Word;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 /**
- * Created by glenlivet on 10/5/16.
+ * Created by glenlivet on 2/26/17.
  */
-@JsonApiRelationshipRepository(source = Word.class, target = Definition.class)
+@JsonApiRelationshipRepository(source=Word.class, target=Definition.class)
 @Component
 public class WordToDefinitionRepository {
 
-    @JsonApiFindOneTarget
-    public Definition findOneTarget(Long projectId, String fieldName, QueryParams requestParams) {
-        Definition def = new Definition();
-        def.setId(1L);
-        def.setDescription("some def");
-        def.setPartOfSpeech("some part");
-        def.setSynonyms(Lists.newArrayList("synonymous"));
-        def.setExamples(Lists.newArrayList("some example."));
-        return def;
-    }
-
     @JsonApiFindManyTargets
-    public Iterable<Definition> findManyTargets(Long projectId, String fieldName, QueryParams requestParams) {
+    public Iterable<Definition> findManyTargets(String word, String fieldName, QuerySpec requestParams) {
         Definition def = new Definition();
-        def.setId(1L);
-        def.setDescription("some def");
-        def.setPartOfSpeech("some part");
-        def.setSynonyms(Lists.newArrayList("synonymous"));
-        def.setExamples(Lists.newArrayList("some example."));
-        return Lists.newArrayList(def);
+        def.setId(1l);
+        def.setDescription("abc desc.");
+        def.setExamples(Arrays.asList("exp 1.", "exp 2.", "exp 3."));
+        def.setPartOfSpeech("aaa");
+        return Arrays.asList(def);
     }
 }

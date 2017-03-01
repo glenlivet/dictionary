@@ -13,9 +13,7 @@ import java.util.List;
 public class Word {
 
     @JsonApiId
-    private Long id;
-
-    private String spell;
+    private String id;
 
     private String pronunciation;
 
@@ -23,22 +21,14 @@ public class Word {
 
     @JsonApiToMany
     @JsonApiIncludeByDefault
-    private List<Definition> definitions = new ArrayList<>();
+    private List<Definition> definitions;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public String getSpell() {
-        return spell;
-    }
-
-    public void setSpell(String spell) {
-        this.spell = spell;
     }
 
     public String getPronunciation() {

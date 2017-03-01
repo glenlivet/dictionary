@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.katharsis.resource.annotations.JsonApiId;
 import io.katharsis.resource.annotations.JsonApiResource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +21,9 @@ public class Definition {
     @JsonProperty("part-of-speech")
     private String partOfSpeech;
 
-    private List<String> synonyms;
+    private List<String> synonyms = new ArrayList<>();
 
-    private List<String> examples;
+    private List<String> examples = new ArrayList<>();
 
     public Long getId() {
         return id;
