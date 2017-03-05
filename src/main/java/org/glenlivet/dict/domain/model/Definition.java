@@ -14,22 +14,26 @@ import java.util.List;
 public class Definition {
 
     @JsonApiId
-    private Long id;
+    private String id;
 
     private String description;
 
     @JsonProperty("part-of-speech")
     private String partOfSpeech;
 
+    private List<String> antonyms = new ArrayList<>();
+
+    private List<String> derivation = new ArrayList<>();
+
     private List<String> synonyms = new ArrayList<>();
 
     private List<String> examples = new ArrayList<>();
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -63,5 +67,21 @@ public class Definition {
 
     public void setExamples(List<String> examples) {
         this.examples = examples;
+    }
+
+    public List<String> getAntonyms() {
+        return antonyms;
+    }
+
+    public void setAntonyms(List<String> antonyms) {
+        this.antonyms = antonyms;
+    }
+
+    public List<String> getDerivation() {
+        return derivation;
+    }
+
+    public void setDerivation(List<String> derivation) {
+        this.derivation = derivation;
     }
 }

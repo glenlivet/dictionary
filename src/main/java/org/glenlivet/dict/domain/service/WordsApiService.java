@@ -3,9 +3,9 @@ package org.glenlivet.dict.domain.service;
 import org.glenlivet.dict.domain.model.Word;
 
 /**
- * Created by glenlivet on 2/26/17.
+ * Created by glenlivet on 3/5/17.
  */
-public interface WordService {
+public interface WordsApiService {
 
-    Word get(String spell);
+    Word word(String word);
 }
